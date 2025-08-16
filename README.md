@@ -1,6 +1,6 @@
 # Semiconductor Portfolio Site
 
-This project is a personal portfolio website for Revanth Sai Nandamuri, a Semiconductor Engineer specializing in Physical Design, Verification, DFT, and Power. The site showcases professional experience, skills, and achievements in the semiconductor industry.
+This project is a personal portfolio website for Revanth Sai Nandamuri, a Semiconductor Engineer specializing in Synthesis, Verification, and Power. The site showcases professional experience, skills, and achievements in the semiconductor industry.
 
 ## Project Structure
 
@@ -18,9 +18,6 @@ This project is a personal portfolio website for Revanth Sai Nandamuri, a Semico
 - **Responsive Design**: Mobile-friendly layout with visually appealing gold accents.
 - **Downloadable Documents**: Resume and summary available for download.
 
-## Usage
-
-Open `index.html` in a web browser to view the portfolio. For full functionality, ensure WebGL is enabled. Downloadable documents are available for further details on professional experience.
 
 ## Author
 
