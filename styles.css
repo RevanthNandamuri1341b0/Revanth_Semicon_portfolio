@@ -1,0 +1,1711 @@
+:root {
+  --bg-dark: #0D0D0D;
+  --text-light: #F2F2F2;
+  --gold-primary: #BA9731;
+  --gold-accent: #DACE84;
+  --gold-28: rgba(186, 151, 49, .28);
+  --gold-35: rgba(186, 151, 49, .35);
+  --gold-glow: rgba(186, 151, 49, .35);
+}
+
+/* Reset & base */
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: system-ui, Inter, Segoe UI, Roboto, Arial, sans-serif;
+  overflow-x: hidden
+}
+
+/* Accents / rails */
+.gold-bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1b1400, var(--gold-primary), #1b1400);
+  z-index: 50;
+  pointer-events: none
+}
+
+.gold-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--gold-28);
+  z-index: 40;
+  pointer-events: none
+}
+
+.gold-rail.left {
+  left: 0
+}
+
+.gold-rail.right {
+  right: 0
+}
+
+/* Canvas */
+canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: 0;
+  pointer-events: none
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 2
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 32px 16px;
+  background: transparent
+}
+
+.hero {
+  height: 100vh
+}
+
+/* Type */
+h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(36px, 7vw, 84px);
+  color: var(--gold-primary);
+  text-shadow: 0 0 18px var(--gold-glow), 0 0 32px rgba(0, 0, 0, .2)
+}
+
+h2 {
+  color: var(--gold-primary);
+  margin: 0 0 18px;
+  letter-spacing: .02em
+}
+
+h3,
+h4 {
+  color: var(--gold-primary);
+  margin: 0 0 8px
+}
+
+p {
+  margin: 10px 0 0
+}
+
+a {
+  color: var(--gold-primary);
+  text-decoration: none
+}
+
+a:hover {
+  color: var(--gold-accent)
+}
+
+.warn {
+  margin-top: 16px;
+  color: #ffdede;
+  background: #2b0f0f;
+  border: 1px solid #5a1d1d;
+  padding: 8px 10px;
+  border-radius: 10px
+}
+
+/* Layout helpers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%
+}
+
+.profile-container {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media(min-width:900px) {
+  .profile-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding: 60px;
+  }
+}
+
+@media(max-width: 899px) {
+  .profile-image {
+    max-width: 400px;
+    transform: none;
+  }
+
+  .profile-image:hover {
+    transform: none;
+  }
+}
+
+.professional-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.summary-text {
+  max-width: 800px;
+  line-height: 1.6;
+  text-align: left;
+  margin: 0;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 20px 0 0;
+  width: 100%;
+}
+
+.professional-content h2 {
+  text-align: left;
+  margin-bottom: 32px;
+  width: 100%;
+  font-size: 2rem;
+  color: var(--gold-primary);
+  text-shadow: 0 0 15px rgba(186, 151, 49, .2);
+}
+
+.summary-text p {
+  margin: 0 auto;
+}
+
+.summary-text strong {
+  color: var(--gold-primary);
+}
+
+.timeline-item {
+  background: rgba(13, 13, 13, .80);
+  border: 1px solid var(--gold-35);
+  border-radius: 16px;
+  padding: 32px;
+  backdrop-filter: saturate(120%) blur(6px);
+  box-shadow: 0 0 40px rgba(186, 151, 49, .14);
+  text-align: left;
+}
+
+.timeline-item h3 {
+  text-align: left;
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+  color: var(--gold-primary);
+}
+
+.timeline-item .eyebrow {
+  text-align: left;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: var(--gold-accent);
+}
+
+.timeline-item ul.bullets {
+  text-align: left;
+  max-width: 100%;
+  margin: 16px 0;
+  padding-left: 20px;
+}
+
+.timeline-item p {
+  text-align: left;
+  max-width: 100%;
+  margin: 16px 0;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.profile-image {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: 0 8px 32px rgba(186, 151, 49, .25);
+  border: 2px solid var(--gold-35);
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  height: fit-content;
+  align-self: center;
+  transform: perspective(1000px) rotateY(-5deg);
+  transition: transform 0.5s ease;
+}
+
+.profile-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg,
+      transparent 0%,
+      rgba(186, 151, 49, 0.1) 100%);
+  pointer-events: none;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.profile-image:hover {
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+.profile-image:hover img {
+  transform: scale(1.05);
+}
+
+.center {
+  text-align: center
+}
+
+/* Generic cards */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 20px;
+  margin-top: 40px;
+  max-width: 1400px;
+  margin: 40px auto 0;
+}
+
+@media (max-width: 1200px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+}
+
+.project-card {
+  aspect-ratio: 3/4;
+  perspective: 1000px;
+  cursor: pointer;
+  height: 450px;
+}
+
+.project {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.project-card:hover .project,
+.project-card:focus .project {
+  transform: rotateY(180deg);
+}
+
+.project-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  background: rgba(13, 13, 13, .90);
+  border: 2px solid var(--gold-35);
+  box-shadow: 0 8px 32px rgba(186, 151, 49, .2);
+  transition: transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover .project-face {
+  box-shadow: 0 12px 40px rgba(186, 151, 49, .3);
+}
+
+.project-face::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(45deg, transparent, rgba(186, 151, 49, 0.1));
+  pointer-events: none;
+}
+
+.project-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 30px;
+  height: 100%;
+}
+
+.project-front h3 {
+  font-size: 1.6rem;
+  margin: 20px 0;
+  color: var(--gold-primary);
+  text-shadow: 0 0 10px rgba(186, 151, 49, .2);
+  width: 100%;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.project-front .eyebrow {
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  align-self: center;
+}
+
+.project-front p {
+  text-align: center;
+  margin-top: 15px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 90%;
+}
+
+.project-front p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+.project-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 35px;
+  background: linear-gradient(180deg, rgba(13, 13, 13, .95), rgba(13, 13, 13, .85));
+}
+
+.project-details {
+  text-align: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-details h4 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: var(--gold-primary);
+  text-align: left;
+  position: relative;
+  padding-bottom: 15px;
+  text-shadow: 0 0 10px rgba(186, 151, 49, .2);
+}
+
+.project-details h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--gold-primary);
+  box-shadow: 0 0 10px rgba(186, 151, 49, .4);
+}
+
+.project-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.project-details li {
+  margin: 12px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.project-details li::before {
+  content: "•";
+  color: var(--gold-primary);
+  position: absolute;
+  left: 0;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: var(--gold-primary);
+  color: var(--bg-dark);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+  align-self: flex-start;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(186, 151, 49, .2);
+}
+
+.project-link:hover {
+  background: var(--gold-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(186, 151, 49, .3);
+}
+
+.project-link::after {
+  content: '→';
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.project-link:hover::after {
+  transform: translateX(4px);
+}
+
+.project-details ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-grow: 1;
+}
+
+.project-details li {
+  margin: 16px 0;
+  padding-left: 28px;
+  position: relative;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-light);
+}
+
+.project-details li::before {
+  content: "→";
+  color: var(--gold-primary);
+  position: absolute;
+  left: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+  transition: transform 0.2s ease;
+}
+
+.project-details li:hover::before {
+  transform: translateX(3px);
+}
+
+.project-details ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.center-projects,
+.center-achievements {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+#patents {
+  padding-bottom: 30px;
+}
+
+#achievements {
+  padding-top: 30px;
+}
+
+.center-projects h2,
+.center-achievements h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--gold-primary);
+  text-shadow: 0 0 15px rgba(186, 151, 49, .2);
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 20px;
+  margin-top: 40px;
+  max-width: 1400px;
+  margin: 40px auto 0;
+}
+
+@media (max-width: 1200px) {
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .achievements-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    gap: 40px;
+  }
+}
+
+.achievement-card {
+  aspect-ratio: 3/4;
+  perspective: 1000px;
+  cursor: pointer;
+  height: 400px;
+}
+
+#achievements {
+  padding-top: 0;
+}
+
+.achievement {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.achievement-card:hover .achievement,
+.achievement-card:focus .achievement {
+  transform: rotateY(180deg);
+}
+
+.achievement-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  background: rgba(13, 13, 13, .90);
+  border: 2px solid var(--gold-35);
+  box-shadow: 0 8px 32px rgba(186, 151, 49, .2);
+  transition: box-shadow 0.3s ease;
+}
+
+.achievement-face::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(45deg, transparent, rgba(186, 151, 49, 0.1));
+  pointer-events: none;
+}
+
+.achievement-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.achievement-front h3 {
+  font-size: 2rem;
+  margin: 20px 0;
+  color: var(--gold-primary);
+  text-shadow: 0 0 15px rgba(186, 151, 49, .2);
+}
+
+.achievement-front p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 90%;
+  margin-top: 20px;
+}
+
+.achievement-back {
+  transform: rotateY(180deg);
+  padding: 40px;
+  overflow-y: auto;
+  background: linear-gradient(180deg, rgba(13, 13, 13, .95), rgba(13, 13, 13, .85));
+}
+
+.achievement-details h4 {
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(186, 151, 49, .2);
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.achievement-details h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--gold-primary);
+  box-shadow: 0 0 10px rgba(186, 151, 49, .4);
+}
+
+.achievement-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievement-details li {
+  margin-bottom: 25px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.achievement-details li::before {
+  content: "★";
+  color: var(--gold-primary);
+  position: absolute;
+  left: 0;
+  font-size: 0.9rem;
+}
+
+.achievement-details strong {
+  display: block;
+  color: var(--gold-primary);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.achievement-details p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+.patent-number {
+  display: block;
+  font-size: 1rem;
+  color: var(--gold-accent);
+  margin: 0 0 20px;
+  letter-spacing: 0.05em;
+  font-family: monospace;
+  text-align: center;
+}
+
+.achievement-front h3 {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  margin: 15px 0;
+}
+
+.achievement-front p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.achievement-details ul {
+  margin-top: 20px;
+}
+
+.achievement-details li {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .project-card {
+    aspect-ratio: 2/3;
+  }
+}
+
+.eyebrow {
+  color: var(--gold-accent);
+  text-transform: uppercase;
+  letter-spacing: .3em;
+  font-size: 12px
+}
+
+.kpi {
+  margin-top: 10px;
+  color: var(--gold-primary);
+  font-weight: 800;
+  font-size: 26px
+}
+
+.info {
+  border: 1px solid var(--gold-35);
+  background: rgba(13, 13, 13, .80);
+  padding: 22px;
+  border-radius: 20px
+}
+
+/* Education Section Styles */
+.center-education {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  padding: 20px;
+  margin-top: 40px;
+  max-width: 1400px;
+  margin: 40px auto 0;
+}
+
+.education-grid .education-card:first-child {
+  grid-row: 1 / 3;
+}
+
+.education-card {
+  aspect-ratio: auto;
+  perspective: 1000px;
+  cursor: pointer;
+  min-height: 300px;
+}
+
+.education-card.main-edu {
+  min-height: 640px;
+}
+
+.education {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.education-card:hover .education,
+.education-card:focus .education {
+  transform: rotateY(180deg);
+}
+
+.education-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  background: rgba(13, 13, 13, .90);
+  border: 2px solid var(--gold-35);
+  box-shadow: 0 8px 32px rgba(186, 151, 49, .2);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-front {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(13, 13, 13, .95), rgba(13, 13, 13, .85));
+}
+
+.education-front .university {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.education-front .uni-name {
+  font-size: 1.2rem;
+  color: var(--gold-accent);
+}
+
+.education-front .location {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.education-front .grade {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  font-size: 1.1rem;
+}
+
+.education-front .cgpa {
+  color: var(--gold-primary);
+  font-weight: bold;
+}
+
+.education-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, rgba(13, 13, 13, .95), rgba(13, 13, 13, .85));
+}
+
+.education-details h4 {
+  font-size: 1.4rem;
+  color: var(--gold-primary);
+  margin-bottom: 25px;
+  text-align: left;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.education-details h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--gold-primary);
+}
+
+.course-list,
+.skills-list,
+.hobbies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.course-list li,
+.skills-list li,
+.hobbies-list li {
+  margin: 15px 0;
+  padding-left: 25px;
+  position: relative;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.course-list li::before {
+  content: "→";
+  color: var(--gold-primary);
+  position: absolute;
+  left: 0;
+  transition: transform 0.2s ease;
+}
+
+.skills-list li::before {
+  content: "★";
+  color: var(--gold-primary);
+  position: absolute;
+  left: 0;
+  font-size: 0.9rem;
+}
+
+.hobbies-list li::before {
+  content: "•";
+  color: var(--gold-primary);
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+.education-front h3 {
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+  margin: 15px 0;
+  line-height: 1.3;
+  text-shadow: 0 0 10px rgba(186, 151, 49, .2);
+}
+
+@media (max-width: 900px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-grid .education-card:first-child {
+    grid-row: auto;
+    min-height: 400px;
+  }
+
+  .education-card {
+    min-height: 300px;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--gold-35);
+  color: var(--text-light)
+}
+
+.btn.primary {
+  background: var(--gold-primary);
+  color: var(--bg-dark);
+  border-color: var(--gold-primary)
+}
+
+.btn.primary:hover {
+  background: var(--gold-accent)
+}
+
+.fine {
+  margin-top: 28px;
+  color: rgba(242, 242, 242, .75);
+  font-size: 12px
+}
+
+.bullets {
+  margin: 8px 0 0;
+  padding-left: 18px
+}
+
+.bullets li {
+  margin: 6px 0
+}
+
+/* Readability vignette */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(1200px 600px at 50% 120%, rgba(0, 0, 0, .28), rgba(0, 0, 0, 0) 55%),
+    linear-gradient(180deg, rgba(0, 0, 0, .0), rgba(0, 0, 0, .2));
+}
+
+/* =============== SKILLS: CHIP TILES (RESPONSIVE + RELIABLE FLIP) =============== */
+/* =============== SKILLS: CHIP TILES (RESPONSIVE + RELIABLE FLIP) =============== */
+#skills {
+  display: block;
+  visibility: visible;
+  position: relative;
+  padding-top: 72px;
+  padding-bottom: 88px;
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+@media (min-width:700px) {
+  .chip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width:1100px) {
+  .chip-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.chip-card {
+  display: block;
+  visibility: visible;
+  perspective: 1200px;
+  outline: none;
+}
+
+/* 2x2 grid for Skills section */
+#skills {
+  padding: 60px 40px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container.center-skills {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.chip-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 500px));
+  gap: 60px;
+  justify-content: center;
+  margin-top: 60px;
+  padding: 20px;
+  max-width: 1400px;
+}
+
+.chip-card {
+  aspect-ratio: 4/3;
+  perspective: 1000px;
+  cursor: pointer;
+  background: rgba(13, 13, 13, .85);
+  border: 2px solid var(--gold-35);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(186, 151, 49, .2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(186, 151, 49, .3);
+}
+
+@media (max-width: 900px) {
+  .chip-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chip-grid-2x2 {
+    gap: 1.5rem;
+  }
+
+  .chip-card {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+/* Center the Skills section and grid */
+.center-skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-primary);
+  text-shadow: 0 0 15px rgba(186, 151, 49, .3);
+}
+
+.chip-face h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--gold-primary);
+  text-shadow: 0 0 10px rgba(186, 151, 49, .2);
+}
+
+.chip-face p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+.chip-face.chip-front {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(13, 13, 13, .9);
+  border-radius: 24px;
+}
+
+.center-grid {
+  justify-content: center;
+  align-items: center;
+}
+
+
+.chip-card:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 6px;
+}
+
+.chip {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+/* flip transform */
+.chip-card.flipped .chip {
+  transform: rotateY(180deg);
+}
+
+@media (hover:hover) {
+  .chip-card:hover .chip {
+    transform: rotateY(180deg);
+  }
+}
+
+/* faces */
+.chip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  padding: 20px;
+}
+
+.chip-front {
+  background: #1a1a1a;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chip-back {
+  background: #1a1a1a;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chip-card.flipped .chip {
+  transform: rotateY(180deg);
+}
+
+.chip-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  transition: opacity .25s ease;
+}
+
+.chip-front h3 {
+  margin: 0 0 10px;
+  color: var(--gold-primary);
+  font-size: clamp(18px, 2.2vw, 22px)
+}
+
+.chip-front p {
+  max-width: 26ch
+}
+
+.chip-back {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: rotateY(180deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity .28s ease .15s;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 100%;
+  background: rgba(13, 13, 13, .95);
+}
+
+.chip-back::before {
+  content: attr(data-category);
+  color: var(--gold-primary);
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* show/hide on flip (class) */
+.chip-card.flipped .chip-front {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.chip-card.flipped .chip-back {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* NEW: also show/hide on hover so no mirrored text */
+@media (hover:hover) {
+  .chip-card:hover .chip-front {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .chip-card:hover .chip-back {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* sub-skill pill */
+.skills-title {
+  font-size: 36px;
+  color: var(--gold-primary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chip-skill {
+  background: rgba(186, 151, 49, 0.08);
+  border: 1px solid var(--gold-35);
+  padding: 12px 16px;
+  margin: 4px 0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.chip-skill:hover {
+  background: rgba(186, 151, 49, 0.15);
+  transform: translateX(5px);
+  border-color: var(--gold-primary);
+}
+
+.chip-back::before {
+  content: attr(data-category);
+  display: block;
+  font-size: 20px;
+  color: var(--gold-primary);
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .chip-grid-2x2 {
+    grid-template-columns: minmax(280px, 450px);
+    gap: 20px;
+  }
+}
+
+.chip-skill:hover {
+  background: rgba(186, 151, 49, .15);
+  transform: translateX(4px);
+  border-color: var(--gold-primary);
+}
+
+.chip-skill:hover {
+  transform: translateY(-2px);
+  background: rgba(186, 151, 49, .16);
+  box-shadow: 0 0 0 1px var(--gold-35), 0 0 14px var(--gold-glow);
+}
+
+/* tooltips */
+.chip-skill::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  white-space: nowrap;
+  z-index: 10;
+  background: #141414;
+  color: var(--text-light);
+  border: 1px solid var(--gold-35);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .4);
+}
+
+.chip-skill:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0)
+}
+
+/* single column if super narrow */
+@media (max-width:420px) {
+  .chip-back {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Scroll reveal stays the same */
+
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(.98);
+  filter: blur(6px);
+  transition: opacity 700ms cubic-bezier(.2, .7, .2, 1) var(--d, 0ms), transform 700ms cubic-bezier(.2, .7, .2, 1) var(--d, 0ms), filter 700ms cubic-bezier(.2, .7, .2, 1) var(--d, 0ms);
+  will-change: opacity, transform, filter
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+  filter: none
+}
+
+.card.reveal {
+  transform: translateY(28px) scale(.985)
+}
+
+.hero h1,
+.hero p {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .8s ease, transform .8s ease
+}
+
+body.loaded .hero h1,
+body.loaded .hero p {
+  opacity: 1;
+  transform: none
+}
+
+/* Education Section */
+.center-education {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.education-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.education-main {
+  width: 100%;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.education-card {
+  perspective: 1500px;
+  height: 460px;
+  /* Further increased default height */
+}
+
+.education-card.skills-card {
+  height: 460px;
+  /* Further increased height for skills and hobbies cards */
+}
+
+.education-card.main-edu {
+  height: 280px;
+  /* Further reduced height for main education card */
+}
+
+.education {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.education-card:hover .education,
+.education-card:focus .education {
+  transform: rotateY(180deg);
+}
+
+.education-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid var(--gold-28);
+  border-radius: 8px;
+  padding: 2rem;
+  background: rgba(30, 30, 30, .95);
+  display: flex;
+  flex-direction: column;
+}
+
+.education-front {
+  align-items: center;
+  text-align: center;
+}
+
+.education-back {
+  transform: rotateY(180deg);
+}
+
+.education-details {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.education-front h3 {
+  margin: 0.75rem 0;
+  color: var(--gold-primary);
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.education-front .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85em;
+  color: var(--gold-accent);
+  margin-bottom: 0.5rem;
+}
+
+.university {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card.main-edu {
+    height: 320px;
+    /* Slightly increased on mobile but still compact */
+  }
+
+  .education-card.skills-card {
+    height: 460px;
+    /* Maintain increased height on mobile */
+  }
+
+  .course-list {
+    grid-template-columns: 1fr;
+  }
+
+  .education-front h3 {
+    font-size: 1.3rem;
+  }
+}
+
+.uni-name {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.location {
+  color: var(--gold-accent);
+  font-size: 0.9rem;
+}
+
+.grade {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: auto;
+  color: var(--gold-accent);
+  font-size: 0.9em;
+}
+
+.course-list,
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.course-list {
+  grid-template-columns: repeat(2, 1fr);
+  text-align: left;
+  margin-top: 1.5rem;
+}
+
+.skills-list {
+  padding: 0.5rem 0;
+}
+
+.education-details h4 {
+  color: var(--gold-primary);
+  margin: 0;
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--gold-28);
+}
+
+.skills-list li,
+.course-list li {
+  position: relative;
+  padding-left: 1.2em;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.skills-list li::before,
+.course-list li::before {
+  content: "•";
+  color: var(--gold-primary);
+  position: absolute;
+  left: 0;
+  top: -1px;
+}
+
+/* Hobby Grid Styling */
+.hobby-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.hobby-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(186, 151, 49, 0.1);
+  border: 1px solid var(--gold-28);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.hobby-block:hover {
+  transform: translateY(-2px);
+  background: rgba(186, 151, 49, 0.16);
+  box-shadow: 0 0 0 1px var(--gold-35), 0 0 14px var(--gold-glow);
+}
+
+.hobby-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.hobby-block span {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card.main-edu {
+    height: 320px;
+    /* Slightly increased on mobile but still compact */
+  }
+
+  .education-card.skills-card {
+    height: 460px;
+    /* Maintain increased height on mobile */
+  }
+
+  .course-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hobby-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* Keep 2 columns on mobile */
+    gap: 0.75rem;
+    /* Slightly reduced gap */
+  }
+
+  .hobby-block {
+    padding: 0.5rem;
+    /* Slightly reduced padding */
+  }
+
+  .education-front h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hobby-grid {
+    grid-template-columns: 1fr;
+    /* Single column on very small screens */
+  }
+}
+
+.education-card.skills-card .education-front p {
+  color: var(--text-light);
+  opacity: 0.8;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card.main-edu {
+    height: 360px;
+    /* Slightly taller on mobile for better readability */
+  }
+
+  .education-card.skills-card {
+    height: 420px;
+    /* Maintain height for skills cards */
+  }
+
+  .course-list {
+    grid-template-columns: 1fr;
+  }
+
+  .education-front h3 {
+    font-size: 1.3rem;
+  }
+}
